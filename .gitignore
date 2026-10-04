@@ -1,0 +1,11 @@
+# Build output: tools, tests, bitstreams/simulation (gateware/build),
+# and faust2tang -o build/... from the repository root
+build/
+tools/bin/
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store

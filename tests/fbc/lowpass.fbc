@@ -1,0 +1,181 @@
+interpreter_dsp_factory double
+file_version 8
+Faust version 2.70.3
+compile_options -lang interp -ct 1 -es 1 -mcd 16 -mdd 1024 -mdy 33 -double -ftz 0 
+name lowpass
+sha_key 
+opt_level 6
+inputs 1 outputs 1
+int_heap_size 4 real_heap_size 10 sr_offset 0 count_offset 1 iota_offset -1
+meta_block
+block_size 28
+meta key "filename" value "lowpass.dsp"
+meta key "filters.lib/fir:author" value "Julius O. Smith III"
+meta key "filters.lib/fir:copyright" value "Copyright (C) 2003-2019 by Julius O. Smith III <jos@ccrma.stanford.edu>"
+meta key "filters.lib/fir:license" value "MIT-style STK-4.3 license"
+meta key "filters.lib/iir:author" value "Julius O. Smith III"
+meta key "filters.lib/iir:copyright" value "Copyright (C) 2003-2019 by Julius O. Smith III <jos@ccrma.stanford.edu>"
+meta key "filters.lib/iir:license" value "MIT-style STK-4.3 license"
+meta key "filters.lib/lowpass0_highpass1" value "Copyright (C) 2003-2019 by Julius O. Smith III <jos@ccrma.stanford.edu>"
+meta key "filters.lib/lowpass0_highpass1:author" value "Julius O. Smith III"
+meta key "filters.lib/lowpass:author" value "Julius O. Smith III"
+meta key "filters.lib/lowpass:copyright" value "Copyright (C) 2003-2019 by Julius O. Smith III <jos@ccrma.stanford.edu>"
+meta key "filters.lib/lowpass:license" value "MIT-style STK-4.3 license"
+meta key "filters.lib/name" value "Faust Filters Library"
+meta key "filters.lib/tf2:author" value "Julius O. Smith III"
+meta key "filters.lib/tf2:copyright" value "Copyright (C) 2003-2019 by Julius O. Smith III <jos@ccrma.stanford.edu>"
+meta key "filters.lib/tf2:license" value "MIT-style STK-4.3 license"
+meta key "filters.lib/tf2s:author" value "Julius O. Smith III"
+meta key "filters.lib/tf2s:copyright" value "Copyright (C) 2003-2019 by Julius O. Smith III <jos@ccrma.stanford.edu>"
+meta key "filters.lib/tf2s:license" value "MIT-style STK-4.3 license"
+meta key "filters.lib/version" value "1.3.0"
+meta key "maths.lib/author" value "GRAME"
+meta key "maths.lib/copyright" value "GRAME"
+meta key "maths.lib/license" value "LGPL with exception"
+meta key "maths.lib/name" value "Faust Math Library"
+meta key "maths.lib/version" value "2.7.0"
+meta key "name" value "lowpass"
+meta key "platform.lib/name" value "Generic Platform Library"
+meta key "platform.lib/version" value "1.3.0"
+user_interface_block
+block_size 3
+opcode 280 kOpenVerticalBox offset -1 label "lowpass" key "" value "" init 0 min 0 max 0 step 0
+opcode 286 kAddHorizontalSlider offset 0 label "cutoff" key "" value "" init 1000 min 50 max 10000 step 1
+opcode 283 kCloseBox offset -1 label "" key "" value "" init 0 min 0 max 0 step 0
+static_init_block
+block_size 1
+opcode 275 kReturn int 0 real 0 offset1 -1 offset2 -1
+constants_block
+block_size 10
+opcode 3 kLoadInt int 0 real 0 offset1 0 offset2 0 name fSampleRate
+opcode 26 kCastReal int 0 real 0 offset1 -1 offset2 -1
+opcode 0 kRealValue int 0 real 1 offset1 -1 offset2 -1
+opcode 239 kMaxf int 0 real 0 offset1 -1 offset2 -1
+opcode 0 kRealValue int 0 real 192000 offset1 -1 offset2 -1
+opcode 241 kMinf int 0 real 0 offset1 -1 offset2 -1
+opcode 0 kRealValue int 0 real 3.141592653589793 offset1 -1 offset2 -1
+opcode 38 kDivReal int 0 real 0 offset1 -1 offset2 -1
+opcode 6 kStoreReal int 0 real 0 offset1 1 offset2 0 name fConst0
+opcode 275 kReturn int 0 real 0 offset1 -1 offset2 -1
+reset_ui
+block_size 3
+opcode 0 kRealValue int 0 real 1000 offset1 -1 offset2 -1
+opcode 6 kStoreReal int 0 real 0 offset1 0 offset2 0 name fHslider0
+opcode 275 kReturn int 0 real 0 offset1 -1 offset2 -1
+clear_block
+block_size 2
+opcode 274 kLoop int 32 real 0 offset1 0 offset2 0
+block_size 3
+opcode 1 kInt32Value int 0 real 0 offset1 -1 offset2 -1
+opcode 7 kStoreInt int 0 real 0 offset1 2 offset2 0 name l0
+opcode 275 kReturn int 0 real 0 offset1 -1 offset2 -1
+block_size 12
+opcode 0 kRealValue int 0 real 0 offset1 -1 offset2 -1
+opcode 3 kLoadInt int 0 real 0 offset1 2 offset2 0 name l0
+opcode 12 kStoreIndexedReal int 0 real 0 offset1 2 offset2 3 name fRec0
+opcode 3 kLoadInt int 0 real 0 offset1 2 offset2 0 name l0
+opcode 1 kInt32Value int 1 real 0 offset1 -1 offset2 -1
+opcode 33 kAddInt int 0 real 0 offset1 -1 offset2 -1
+opcode 7 kStoreInt int 0 real 0 offset1 2 offset2 0 name l0
+opcode 1 kInt32Value int 3 real 0 offset1 -1 offset2 -1
+opcode 3 kLoadInt int 0 real 0 offset1 2 offset2 0 name l0
+opcode 46 kLTInt int 0 real 0 offset1 -1 offset2 -1
+opcode 279 kCondBranch int 0 real 0 offset1 0 offset2 0
+opcode 275 kReturn int 0 real 0 offset1 -1 offset2 -1
+opcode 275 kReturn int 0 real 0 offset1 -1 offset2 -1
+control_block
+block_size 38
+opcode 2 kLoadReal int 0 real 0 offset1 1 offset2 0 name fConst0
+opcode 2 kLoadReal int 0 real 0 offset1 0 offset2 0 name fHslider0
+opcode 36 kMultReal int 0 real 0 offset1 -1 offset2 -1
+opcode 209 kTanf int 0 real 0 offset1 -1 offset2 -1
+opcode 6 kStoreReal int 0 real 0 offset1 5 offset2 0 name fSlow0
+opcode 0 kRealValue int 0 real 2 offset1 -1 offset2 -1
+opcode 2 kLoadReal int 0 real 0 offset1 5 offset2 0 name fSlow0
+opcode 237 kPowf int 0 real 0 offset1 -1 offset2 -1
+opcode 0 kRealValue int 0 real 1 offset1 -1 offset2 -1
+opcode 38 kDivReal int 0 real 0 offset1 -1 offset2 -1
+opcode 0 kRealValue int 0 real 1 offset1 -1 offset2 -1
+opcode 34 kSubReal int 0 real 0 offset1 -1 offset2 -1
+opcode 0 kRealValue int 0 real 2 offset1 -1 offset2 -1
+opcode 36 kMultReal int 0 real 0 offset1 -1 offset2 -1
+opcode 6 kStoreReal int 0 real 0 offset1 6 offset2 0 name fSlow1
+opcode 2 kLoadReal int 0 real 0 offset1 5 offset2 0 name fSlow0
+opcode 0 kRealValue int 0 real 1 offset1 -1 offset2 -1
+opcode 38 kDivReal int 0 real 0 offset1 -1 offset2 -1
+opcode 6 kStoreReal int 0 real 0 offset1 7 offset2 0 name fSlow2
+opcode 2 kLoadReal int 0 real 0 offset1 5 offset2 0 name fSlow0
+opcode 2 kLoadReal int 0 real 0 offset1 7 offset2 0 name fSlow2
+opcode 0 kRealValue int 0 real -1.414213562373095 offset1 -1 offset2 -1
+opcode 32 kAddReal int 0 real 0 offset1 -1 offset2 -1
+opcode 38 kDivReal int 0 real 0 offset1 -1 offset2 -1
+opcode 0 kRealValue int 0 real 1 offset1 -1 offset2 -1
+opcode 32 kAddReal int 0 real 0 offset1 -1 offset2 -1
+opcode 6 kStoreReal int 0 real 0 offset1 8 offset2 0 name fSlow3
+opcode 2 kLoadReal int 0 real 0 offset1 5 offset2 0 name fSlow0
+opcode 2 kLoadReal int 0 real 0 offset1 7 offset2 0 name fSlow2
+opcode 0 kRealValue int 0 real 1.414213562373095 offset1 -1 offset2 -1
+opcode 32 kAddReal int 0 real 0 offset1 -1 offset2 -1
+opcode 38 kDivReal int 0 real 0 offset1 -1 offset2 -1
+opcode 0 kRealValue int 0 real 1 offset1 -1 offset2 -1
+opcode 32 kAddReal int 0 real 0 offset1 -1 offset2 -1
+opcode 0 kRealValue int 0 real 1 offset1 -1 offset2 -1
+opcode 38 kDivReal int 0 real 0 offset1 -1 offset2 -1
+opcode 6 kStoreReal int 0 real 0 offset1 9 offset2 0 name fSlow4
+opcode 275 kReturn int 0 real 0 offset1 -1 offset2 -1
+dsp_block
+block_size 2
+opcode 274 kLoop int 32 real 0 offset1 0 offset2 0
+block_size 3
+opcode 1 kInt32Value int 0 real 0 offset1 -1 offset2 -1
+opcode 7 kStoreInt int 0 real 0 offset1 3 offset2 0 name i0
+opcode 275 kReturn int 0 real 0 offset1 -1 offset2 -1
+block_size 47
+opcode 2 kLoadReal int 0 real 0 offset1 8 offset2 0 name fSlow3
+opcode 1 kInt32Value int 2 real 0 offset1 -1 offset2 -1
+opcode 10 kLoadIndexedReal int 0 real 0 offset1 2 offset2 3 name fRec0
+opcode 36 kMultReal int 0 real 0 offset1 -1 offset2 -1
+opcode 2 kLoadReal int 0 real 0 offset1 6 offset2 0 name fSlow1
+opcode 1 kInt32Value int 1 real 0 offset1 -1 offset2 -1
+opcode 10 kLoadIndexedReal int 0 real 0 offset1 2 offset2 3 name fRec0
+opcode 36 kMultReal int 0 real 0 offset1 -1 offset2 -1
+opcode 32 kAddReal int 0 real 0 offset1 -1 offset2 -1
+opcode 2 kLoadReal int 0 real 0 offset1 9 offset2 0 name fSlow4
+opcode 36 kMultReal int 0 real 0 offset1 -1 offset2 -1
+opcode 3 kLoadInt int 0 real 0 offset1 3 offset2 0 name i0
+opcode 24 kLoadInput int 0 real 0 offset1 0 offset2 0
+opcode 34 kSubReal int 0 real 0 offset1 -1 offset2 -1
+opcode 1 kInt32Value int 0 real 0 offset1 -1 offset2 -1
+opcode 12 kStoreIndexedReal int 0 real 0 offset1 2 offset2 3 name fRec0
+opcode 0 kRealValue int 0 real 2 offset1 -1 offset2 -1
+opcode 1 kInt32Value int 1 real 0 offset1 -1 offset2 -1
+opcode 10 kLoadIndexedReal int 0 real 0 offset1 2 offset2 3 name fRec0
+opcode 36 kMultReal int 0 real 0 offset1 -1 offset2 -1
+opcode 1 kInt32Value int 0 real 0 offset1 -1 offset2 -1
+opcode 10 kLoadIndexedReal int 0 real 0 offset1 2 offset2 3 name fRec0
+opcode 32 kAddReal int 0 real 0 offset1 -1 offset2 -1
+opcode 1 kInt32Value int 2 real 0 offset1 -1 offset2 -1
+opcode 10 kLoadIndexedReal int 0 real 0 offset1 2 offset2 3 name fRec0
+opcode 32 kAddReal int 0 real 0 offset1 -1 offset2 -1
+opcode 2 kLoadReal int 0 real 0 offset1 9 offset2 0 name fSlow4
+opcode 36 kMultReal int 0 real 0 offset1 -1 offset2 -1
+opcode 3 kLoadInt int 0 real 0 offset1 3 offset2 0 name i0
+opcode 25 kStoreOutput int 0 real 0 offset1 0 offset2 0
+opcode 1 kInt32Value int 1 real 0 offset1 -1 offset2 -1
+opcode 10 kLoadIndexedReal int 0 real 0 offset1 2 offset2 3 name fRec0
+opcode 1 kInt32Value int 2 real 0 offset1 -1 offset2 -1
+opcode 12 kStoreIndexedReal int 0 real 0 offset1 2 offset2 3 name fRec0
+opcode 1 kInt32Value int 0 real 0 offset1 -1 offset2 -1
+opcode 10 kLoadIndexedReal int 0 real 0 offset1 2 offset2 3 name fRec0
+opcode 1 kInt32Value int 1 real 0 offset1 -1 offset2 -1
+opcode 12 kStoreIndexedReal int 0 real 0 offset1 2 offset2 3 name fRec0
+opcode 3 kLoadInt int 0 real 0 offset1 3 offset2 0 name i0
+opcode 1 kInt32Value int 1 real 0 offset1 -1 offset2 -1
+opcode 33 kAddInt int 0 real 0 offset1 -1 offset2 -1
+opcode 7 kStoreInt int 0 real 0 offset1 3 offset2 0 name i0
+opcode 3 kLoadInt int 0 real 0 offset1 1 offset2 0 name count
+opcode 3 kLoadInt int 0 real 0 offset1 3 offset2 0 name i0
+opcode 46 kLTInt int 0 real 0 offset1 -1 offset2 -1
+opcode 279 kCondBranch int 0 real 0 offset1 0 offset2 0
+opcode 275 kReturn int 0 real 0 offset1 -1 offset2 -1
+opcode 275 kReturn int 0 real 0 offset1 -1 offset2 -1
