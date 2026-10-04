@@ -2,7 +2,7 @@
 #   bin/faust2tang     Faust -> DSP core compiler
 CXX      ?= g++
 CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra
-HEADERS  := $(wildcard ../src/NanoTangFaust/compiler/*.h)
+HEADERS  := $(wildcard ../src/TangNanoFaust/compiler/*.h)
 
 all: bin/faust2tang
 

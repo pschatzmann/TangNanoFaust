@@ -6,8 +6,8 @@
 //  - Serial1 at 31250 baud with a DIN MIDI input (optocoupler) circuit, or
 //  - Serial at 115200 with a serial-to-MIDI bridge on the PC
 //    (e.g. Hairless MIDI<->Serial), as configured below.
-#include <NanoTangFaust.h>
-using namespace nanotangfaust;
+#include <TangNanoFaust.h>
+using namespace tangnanofaust;
 
 const int CS_PIN = 5;
 #define MIDI_IN Serial

@@ -1,5 +1,5 @@
 // Monophonic subtractive synth: sawtooth -> ADSR -> resonant lowpass.
-// freq/gain/gate follow Faust's MIDI naming, so NanoTangFaust's MIDI
+// freq/gain/gate follow Faust's MIDI naming, so TangNanoFaust's MIDI
 // support plays it from note on/off messages.
 declare name "synth";
 import("stdfaust.lib");

@@ -19,7 +19,7 @@
 
 #include "IsaOpcodes.h"
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 namespace compiler {
 
 uint32_t fromFloat(double v);  // Compiler.h
@@ -613,4 +613,4 @@ static const int kRoutineCount = sizeof(kRoutines) / sizeof(kRoutines[0]);
 
 }  // namespace mathlib
 }  // namespace compiler
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

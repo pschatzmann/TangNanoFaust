@@ -12,11 +12,11 @@
 // Needs: the generic bitstream on the FPGA (`make -C gateware generic-flash`)
 // and an MCU with the C++ standard library (ESP32, RP2040, ...).
 // Wiring: SPI SCK/MOSI/MISO -> FPGA pins 27/28/29, CS_PIN -> pin 30, GND.
-#include <NanoTangFaustCompiler.h>
+#include <TangNanoFaustCompiler.h>
 
 #include "synth_fbc.h"
 
-using namespace nanotangfaust;
+using namespace tangnanofaust;
 
 const int CS_PIN = 5;
 

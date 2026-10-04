@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 //
-// NanoTangFaust top level for the Sipeed Tang Nano 20K.
+// TangNanoFaust top level for the Sipeed Tang Nano 20K.
 //
 //   I2S master (onboard MAX98357A) --frame_start--> sequencer --> dsp_core
 //   SPI (host MCU) --> spi_ctrl --> parameter writes/reads between samples

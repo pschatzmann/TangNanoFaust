@@ -18,7 +18,7 @@
 
 #include "ProgramData.h"
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 
 static const uint8_t kProgramBlobVersion = 1;
 static const size_t kProgramBlobHeader = 32;
@@ -62,4 +62,4 @@ inline bool parseProgramBlob(const uint8_t *data, size_t size, ProgramData &p) {
   return true;
 }
 
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

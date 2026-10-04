@@ -14,7 +14,7 @@
 #include <utility>
 #include <vector>
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 namespace compiler {
 
 /// FBC instructions this compiler knows (everything else is rejected).
@@ -253,4 +253,4 @@ class FbcParser {
 };
 
 }  // namespace compiler
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

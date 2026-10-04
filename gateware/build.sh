@@ -5,8 +5,8 @@
 #
 # PROGRAM is a .dsp (compiled with $FAUST) or .fbc; the faust2tang options
 # select the hardware (--generic, --tdm). Output: OUTDIR/<name>.fs, the
-# timing report OUTDIR/impl/pnr/nanotangfaust.tr.html, the utilization
-# report OUTDIR/impl/pnr/nanotangfaust.rpt.txt and faust2tang's report.txt.
+# timing report OUTDIR/impl/pnr/tangnanofaust.tr.html, the utilization
+# report OUTDIR/impl/pnr/tangnanofaust.rpt.txt and faust2tang's report.txt.
 set -e
 GW=$(cd "$(dirname "$0")" && pwd)
 OUT=$1
@@ -51,7 +51,7 @@ SDRAM=$(grep -q 'NTF_USE_SDRAM   1' "$OUT/config.vh" && echo 1 || true)
 
 # Timing: the 27 MHz oscillator and the PLL output. The UART bridge (27 MHz)
 # and the system clock domain exchange signals only through synchronizers.
-cat > "$OUT/nanotangfaust.sdc" <<EOF
+cat > "$OUT/tangnanofaust.sdc" <<EOF
 create_clock -name clk_27m -period 37.037 [get_ports {clk_27m}]
 create_generated_clock -name sys_clk -source [get_ports {clk_27m}] -master_clock clk_27m -multiply_by $((FBDIV + 1)) -divide_by $((IDIV + 1)) [get_pins {u_pll/pll/CLKOUT}]
 set_false_path -from [get_clocks {clk_27m}] -to [get_clocks {sys_clk}]
@@ -66,9 +66,9 @@ EOF
   done
   [ -n "$SDRAM" ] && echo "add_file sdram.v" && echo "add_file sdram_bus.v"
   echo "add_file tangnano20k.cst"
-  echo "add_file nanotangfaust.sdc"
+  echo "add_file tangnanofaust.sdc"
   echo "set_option -top_module top_tangnano20k"
-  echo "set_option -output_base_name nanotangfaust"
+  echo "set_option -output_base_name tangnanofaust"
   echo "set_option -use_mspi_as_gpio 1"
   echo "set_option -use_sspi_as_gpio 1"
   echo "run all"
@@ -78,11 +78,11 @@ EOF
 cd "$OUT"
 "$GW_SH" build.tcl > gowin.log 2>&1 || { grep -E "ERROR" gowin.log >&2; exit 1; }
 rm -f "$NAME.fs"   # Gowin writes its bitstream read-only
-cp impl/pnr/nanotangfaust.fs "$NAME.fs"
+cp impl/pnr/tangnanofaust.fs "$NAME.fs"
 chmod 644 "$NAME.fs"
 
 # summary: maximum clock frequency (Gowin's worst case: 0.95 V, 85 C)
-sed -e 's/<[^>]*>/ /g' impl/pnr/nanotangfaust_tr_content.html | tr -s ' \t\n' ' ' |
+sed -e 's/<[^>]*>/ /g' impl/pnr/tangnanofaust_tr_content.html | tr -s ' \t\n' ' ' |
   grep -o 'sys_clk [0-9.]*(MHz) [0-9.]*(MHz)' | head -1 |
   awk '{printf "sys_clk: target %s, Fmax %s (worst case)\n", $2, $3}'
 echo "Bitstream: $OUT/$NAME.fs"

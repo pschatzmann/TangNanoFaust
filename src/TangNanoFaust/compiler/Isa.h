@@ -12,7 +12,7 @@
 #include "Fp32.h"
 #include "IsaOpcodes.h"
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 namespace compiler {
 
 static const uint32_t kSimSdramBase = 0x00800000;
@@ -288,4 +288,4 @@ class Machine {
 };
 
 }  // namespace compiler
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

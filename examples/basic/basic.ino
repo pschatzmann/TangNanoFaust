@@ -3,8 +3,8 @@
 //
 // Wiring (see docs/pinout.md): MCU SPI SCK/MOSI/MISO -> FPGA pins 27/28/29,
 // CS_PIN -> FPGA pin 30, and a common ground.
-#include <NanoTangFaust.h>
-using namespace nanotangfaust;
+#include <TangNanoFaust.h>
+using namespace tangnanofaust;
 
 const int CS_PIN = 5;
 TangNanoFaust faust;

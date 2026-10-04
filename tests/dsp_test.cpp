@@ -19,12 +19,12 @@
 #include <vector>
 
 #include "FbcInterpreter.h"
-#include "NanoTangFaust/compiler/Compiler.h"
-#include "NanoTangFaust/compiler/Isa.h"
-#include "NanoTangFaust/compiler/Output.h"
+#include "TangNanoFaust/compiler/Compiler.h"
+#include "TangNanoFaust/compiler/Isa.h"
+#include "TangNanoFaust/compiler/Output.h"
 
-using namespace nanotangfaust;
-using namespace nanotangfaust::compiler;
+using namespace tangnanofaust;
+using namespace tangnanofaust::compiler;
 
 static std::string readFile(const std::string &path) {
   std::ifstream in(path);

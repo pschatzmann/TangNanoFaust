@@ -4,8 +4,8 @@
 // Wiring: MCU TX -> FPGA pin 25, MCU RX <- FPGA pin 26, GND. 115200 baud.
 // (The board's own USB port reaches the FPGA the same way, from a PC:
 //  tools/bin/faust2tang --port /dev/ttyUSB1 --list)
-#include <NanoTangFaust.h>
-using namespace nanotangfaust;
+#include <TangNanoFaust.h>
+using namespace tangnanofaust;
 
 TangNanoFaust faust;
 

@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 //
-// NanoTangFaust DSP core: a 32-bit stack machine that runs programs
+// TangNanoFaust DSP core: a 32-bit stack machine that runs programs
 // compiled from Faust by faust2tang (instruction set: compiler/IsaOpcodes.h
-// / isa_opcodes.vh). The simulator in src/NanoTangFaust/compiler/Isa.h is
+// / isa_opcodes.vh). The simulator in src/TangNanoFaust/compiler/Isa.h is
 // the bit-exact reference model, including the cycle count (`cycles`).
 //
 // Execution: `run` starts the program at `entry`; the core runs until HALT,

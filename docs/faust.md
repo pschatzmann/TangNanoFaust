@@ -1,4 +1,4 @@
-# Writing Faust programs for NanoTangFaust
+# Writing Faust programs for TangNanoFaust
 
 Any Faust program that the Faust compiler turns into interpreter bytecode
 (`faust -lang interp`) can be compiled. There are four practical limits:

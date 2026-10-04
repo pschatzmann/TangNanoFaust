@@ -10,17 +10,17 @@
 // into the serial monitor (115200 baud, newline line ending) and finish it
 // with a line containing only "." -- it is compiled and played at once.
 //
-// FaustServerCompiler (NanoTangFaustServer.h) does the work; it runs over
+// FaustServerCompiler (TangNanoFaustServer.h) does the work; it runs over
 // any Arduino Client, so the same code works with Ethernet or a Pico W.
 //
 // Needs: the generic bitstream on the FPGA, an ESP32.
 // Wiring: SPI SCK/MOSI/MISO -> FPGA pins 27/28/29, CS_PIN -> pin 30, GND.
-#include <NanoTangFaustServer.h>
+#include <TangNanoFaustServer.h>
 #include <WiFi.h>
 
 #include <string>
 
-using namespace nanotangfaust;
+using namespace tangnanofaust;
 
 const char *WIFI_SSID = "your-ssid";
 const char *WIFI_PASSWORD = "your-password";

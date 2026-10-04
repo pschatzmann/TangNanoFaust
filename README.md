@@ -1,4 +1,4 @@
-# NanoTangFaust
+# TangNano Faust
 
 [![Arduino Library](https://img.shields.io/badge/Arduino-Library-00979D?logo=arduino&logoColor=white)](docs/installation.md#1-install-the-arduino-library)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
@@ -58,9 +58,9 @@ Or from an Arduino sketch, with the header `faust2tang my.dsp -o build/my`
 writes (`build/my/my_program.h`):
 
 ```cpp
-#include <NanoTangFaust.h>
+#include <TangNanoFaust.h>
 #include "my_program.h"
-using namespace nanotangfaust;
+using namespace tangnanofaust;
 
 TangNanoFaust faust;
 

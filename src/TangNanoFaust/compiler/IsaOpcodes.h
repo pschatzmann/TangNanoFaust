@@ -1,5 +1,5 @@
 #pragma once
-// Instruction set of the NanoTangFaust DSP core (gateware/rtl/dsp_core.v).
+// Instruction set of the TangNanoFaust DSP core (gateware/rtl/dsp_core.v).
 //
 // This list is the single source of the opcodes: `faust2tang
 // --verilog-opcodes` writes gateware/rtl/isa_opcodes.vh from it.
@@ -70,7 +70,7 @@
   X(FSQRT, 0x54, 0, "T = sqrt(T) (unary)")                                   \
   X(FFLOOR, 0x55, 0, "T = floor(T) (unary)")
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 namespace compiler {
 
 enum CoreOp : uint8_t {
@@ -104,4 +104,4 @@ static const CoreOpInfo kCoreOps[] = {
 static const int kCoreOpCount = sizeof(kCoreOps) / sizeof(kCoreOps[0]);
 
 }  // namespace compiler
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

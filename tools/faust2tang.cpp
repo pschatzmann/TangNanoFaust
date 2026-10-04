@@ -1,4 +1,4 @@
-// faust2tang: compile a Faust .dsp for the NanoTangFaust FPGA DSP core.
+// faust2tang: compile a Faust .dsp for the TangNanoFaust FPGA DSP core.
 //
 //   faust2tang my.dsp -o build/
 //   faust2tang --serve 8000          compile server for microcontrollers
@@ -29,11 +29,11 @@
 #include <string>
 #include <vector>
 
-#include "NanoTangFaust/compiler/Compiler.h"
-#include "NanoTangFaust/compiler/Isa.h"
-#include "NanoTangFaust/compiler/Output.h"
+#include "TangNanoFaust/compiler/Compiler.h"
+#include "TangNanoFaust/compiler/Isa.h"
+#include "TangNanoFaust/compiler/Output.h"
 
-using namespace nanotangfaust::compiler;
+using namespace tangnanofaust::compiler;
 
 // ---------------------------------------------------------------- USB serial
 // The FPGA's UART command port (gateware/rtl/uart_bridge.v) on the board's
@@ -317,7 +317,7 @@ static int boardActions(const std::string &port, const ProgramImage *load, bool 
     return 1;
   }
   if (!b.ping(version)) {
-    fprintf(stderr, "faust2tang: no NanoTangFaust bitstream answering on %s (it is the board's "
+    fprintf(stderr, "faust2tang: no TangNanoFaust bitstream answering on %s (it is the board's "
             "second USB serial port, 115200 baud)\n", port.c_str());
     return 1;
   }
@@ -488,7 +488,7 @@ struct ServerConfig {
 };
 
 static const char *kServerHelp =
-    "NanoTangFaust compile server (faust2tang --serve)\n\n"
+    "TangNanoFaust compile server (faust2tang --serve)\n\n"
     "POST /compile with the Faust source as the body. Query parameters:\n"
     "  out=program|fbc|report  program blob for TangNanoFaust::load() (default),\n"
     "                          bytecode for FaustCompiler, or the text report\n"

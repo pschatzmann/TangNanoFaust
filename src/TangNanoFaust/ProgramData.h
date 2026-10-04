@@ -1,12 +1,12 @@
 #pragma once
 #include <stdint.h>
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 
 /**
  * @brief A compiled Faust program that TangNanoFaust::load() can upload to
  * the FPGA. faust2tang writes one as `<name>_program.h`; the on-MCU
- * compiler (NanoTangFaustCompiler.h) produces one at runtime.
+ * compiler (TangNanoFaustCompiler.h) produces one at runtime.
  */
 struct ProgramData {
   const char *name = "";
@@ -22,4 +22,4 @@ struct ProgramData {
   uint8_t minProtocol = 3;  ///< oldest bitstream protocol version that runs it
 };
 
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

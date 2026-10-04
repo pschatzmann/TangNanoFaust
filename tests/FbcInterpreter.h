@@ -10,9 +10,9 @@
 #include <string>
 #include <vector>
 
-#include "NanoTangFaust/compiler/Fbc.h"
+#include "TangNanoFaust/compiler/Fbc.h"
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 namespace test {
 
 using namespace compiler;
@@ -187,4 +187,4 @@ class FbcInterpreter {
 };
 
 }  // namespace test
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

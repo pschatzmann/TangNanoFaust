@@ -7,7 +7,7 @@
 #   make check          simulator vs reference interpreter for all tests/fbc/*.fbc
 CXX      ?= g++
 CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra
-HEADERS  := $(wildcard ../src/NanoTangFaust/compiler/*.h) FbcInterpreter.h
+HEADERS  := $(wildcard ../src/TangNanoFaust/compiler/*.h) FbcInterpreter.h
 
 all: build/dsp_test build/fpu_vectors build/blob_test
 
@@ -19,11 +19,11 @@ build/fpu_vectors: fpu_vectors.cpp $(HEADERS)
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) -I../src $< -o $@
 
-build/blob_test: blob_test.cpp $(HEADERS) ../src/NanoTangFaust/ProgramBlob.h
+build/blob_test: blob_test.cpp $(HEADERS) ../src/TangNanoFaust/ProgramBlob.h
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) -I../src $< -o $@
 
-build/midi_test: host/midi_test.cpp host/Arduino.h host/SPI.h $(wildcard ../src/NanoTangFaust/*.h)
+build/midi_test: host/midi_test.cpp host/Arduino.h host/SPI.h $(wildcard ../src/TangNanoFaust/*.h)
 	mkdir -p build
 	$(CXX) $(CXXFLAGS) -Ihost -I../src $< -o $@
 

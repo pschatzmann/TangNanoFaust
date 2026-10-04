@@ -32,7 +32,7 @@ protocol, and only one of them may be used at a time.
 ## The DSP core
 
 `dsp_core.v` is a 32-bit stack machine. The instruction set is listed in
-`src/NanoTangFaust/compiler/IsaOpcodes.h`, and `isa_opcodes.vh` is generated
+`src/TangNanoFaust/compiler/IsaOpcodes.h`, and `isa_opcodes.vh` is generated
 from it. Every instruction is 40 bits: an 8-bit opcode and a 32-bit
 argument. Binary operations take the top of the stack as their first
 operand, as Faust's bytecode does.
@@ -68,7 +68,7 @@ operand, as Faust's bytecode does.
   the core continues with the value it has. A wrong result is then
   counted by the self-tests instead of hanging the core.
 
-`src/NanoTangFaust/compiler/Isa.h` simulates the core bit- and cycle-exactly.
+`src/TangNanoFaust/compiler/Isa.h` simulates the core bit- and cycle-exactly.
 
 ## Sample flow
 
@@ -128,8 +128,8 @@ flash targets. In the build directory:
 |---|---|
 | `<name>.fs` | the bitstream |
 | `report.txt` | the program: memory, parameters, cycles per sample |
-| `impl/pnr/nanotangfaust.tr.html` | Gowin's timing report |
-| `impl/pnr/nanotangfaust.rpt.txt` | Gowin's utilization report |
+| `impl/pnr/tangnanofaust.tr.html` | Gowin's timing report |
+| `impl/pnr/tangnanofaust.rpt.txt` | Gowin's utilization report |
 | `gowin.log` | the Gowin run |
 
 A bitstream built for one program is sized for it: program and data memory,

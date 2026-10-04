@@ -11,21 +11,21 @@ You need up to three things:
 ## 1. Install the Arduino library
 
 **Arduino IDE:** download the repository as a ZIP from
-<https://github.com/pschatzmann/NanoTangFaust> (Code > Download ZIP), then
+<https://github.com/pschatzmann/TangNanoFaust> (Code > Download ZIP), then
 use *Sketch > Include Library > Add .ZIP Library...*.
 
 **git** (recommended, since you also get the tools and gateware):
 
 ```bash
 cd ~/Arduino/libraries          # your sketchbook's libraries folder
-git clone https://github.com/pschatzmann/NanoTangFaust.git
+git clone https://github.com/pschatzmann/TangNanoFaust.git
 ```
 
 **arduino-cli:**
 
 ```bash
 arduino-cli config set library.enable_unsafe_install true
-arduino-cli lib install --git-url https://github.com/pschatzmann/NanoTangFaust.git
+arduino-cli lib install --git-url https://github.com/pschatzmann/TangNanoFaust.git
 ```
 
 The library has no dependencies. `TangNanoFaust` and `FaustMidi` need only
@@ -119,7 +119,7 @@ The bitstream runs at 48 MHz (1000 cycles per sample at 48 kHz); see
 ## 3. Install Faust and faust2tang
 
 [Faust](https://faust.grame.fr) 2.70 or newer turns `.dsp` files into the
-bytecode NanoTangFaust compiles:
+bytecode TangNanoFaust compiles:
 
 ```bash
 sudo apt install faust            # Debian/Ubuntu (24.04 ships 2.70)

@@ -8,12 +8,12 @@
 #include <sstream>
 #include <string>
 
-#include "NanoTangFaust/ProgramBlob.h"
-#include "NanoTangFaust/compiler/Compiler.h"
-#include "NanoTangFaust/compiler/Output.h"
+#include "TangNanoFaust/ProgramBlob.h"
+#include "TangNanoFaust/compiler/Compiler.h"
+#include "TangNanoFaust/compiler/Output.h"
 
-using namespace nanotangfaust;
-using namespace nanotangfaust::compiler;
+using namespace tangnanofaust;
+using namespace tangnanofaust::compiler;
 
 static std::string readFile(const char *path) {
   std::ifstream in(path, std::ios::binary);

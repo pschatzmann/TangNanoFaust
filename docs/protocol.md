@@ -4,7 +4,7 @@ The FPGA is an SPI slave: mode 0 (CPOL=0, CPHA=0), MSB first, at most
 3 MHz (the FPGA samples it with its 48 MHz system clock). The same
 commands also work over a serial line (see below). It is implemented in
 `gateware/rtl/spi_ctrl.v`, and `TangNanoFaust`
-(`src/NanoTangFaust/TangNanoFaust.h`) is the host side.
+(`src/TangNanoFaust/TangNanoFaust.h`) is the host side.
 Every command is one transaction (CS low): an opcode byte, then its
 arguments. Multi-byte values are little endian.
 

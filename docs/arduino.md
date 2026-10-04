@@ -1,11 +1,11 @@
 # Arduino library
 
-`#include <NanoTangFaust.h>` provides `TangNanoFaust` (the FPGA over SPI
-or a UART) and `FaustMidi`. `#include <NanoTangFaustCompiler.h>` adds
+`#include <TangNanoFaust.h>` provides `TangNanoFaust` (the FPGA over SPI
+or a UART) and `FaustMidi`. `#include <TangNanoFaustCompiler.h>` adds
 `FaustCompiler`, which compiles Faust bytecode on the microcontroller; it
 needs the C++ standard library (ESP32, RP2040, ...).
-`#include <NanoTangFaustServer.h>` adds `FaustServerCompiler`, which
-compiles over the network. Everything is in the namespace `nanotangfaust`.
+`#include <TangNanoFaustServer.h>` adds `FaustServerCompiler`, which
+compiles over the network. Everything is in the namespace `tangnanofaust`.
 
 ## TangNanoFaust
 
@@ -56,7 +56,7 @@ only accepts programs that fit its sizes.
 ## Compiling on the microcontroller
 
 ```cpp
-#include <NanoTangFaustCompiler.h>
+#include <TangNanoFaustCompiler.h>
 #include "synth_fbc.h"            // faust2tang --sketch synth.dsp
 
 FaustCompiler faustCompiler;
@@ -84,7 +84,7 @@ your network. `faust2tang --serve 8000` is a small compile server (see
 sends it Faust source code and loads the answer:
 
 ```cpp
-#include <NanoTangFaustServer.h>
+#include <TangNanoFaustServer.h>
 #include <WiFi.h>
 
 WiFiClient client;
@@ -101,7 +101,7 @@ along its sample rate, block RAM size, SDRAM and clock from `info()`.
 | Method | |
 |---|---|
 | `compileAndLoad(faust, source)` | the server compiles everything and returns the finished program (a few KB); the MCU only loads it. Needs no C++ standard library. |
-| `compileAndLoad(faust, source, faustCompiler)` | the server only runs Faust and returns the bytecode; a `FaustCompiler` (`NanoTangFaustCompiler.h`) compiles it on the MCU |
+| `compileAndLoad(faust, source, faustCompiler)` | the server only runs Faust and returns the bytecode; a `FaustCompiler` (`TangNanoFaustCompiler.h`) compiles it on the MCU |
 | `compile(info, source, out)` | only fetch: `out` = `"program"`, `"fbc"` or `"report"`; the answer is in `data()`/`size()` |
 | `error()`, `status()` | why the last call failed, and the HTTP status |
 | `cycles()`, `controlCycles()` | cycles per sample of the compiled program, simulated by the server (normal / after a parameter change) |

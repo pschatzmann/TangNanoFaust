@@ -9,9 +9,9 @@
 #include <random>
 #include <vector>
 
-#include "NanoTangFaust/compiler/Fp32.h"
+#include "TangNanoFaust/compiler/Fp32.h"
 
-using namespace nanotangfaust;
+using namespace tangnanofaust;
 
 static uint32_t eval(uint32_t op, uint32_t a, uint32_t b) {
   switch (op) {

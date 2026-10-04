@@ -6,7 +6,7 @@
 
 #include "ProgramData.h"
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 
 /// Kind of a Faust UI element, as described by the FPGA.
 enum class ParameterKind { Button, Checkbox, HSlider, VSlider, NumEntry, HBargraph, VBargraph, Unknown };
@@ -90,7 +90,7 @@ struct Info {
 
 /**
  * @brief Arduino driver for a Tang Nano 20K running a Faust program on the
- * NanoTangFaust DSP core (see docs/protocol.md). Connects over SPI or over a
+ * TangNanoFaust DSP core (see docs/protocol.md). Connects over SPI or over a
  * serial line (`Stream`, 115200 baud) to the FPGA's header UART.
  *
  * The FPGA plays the audio itself (onboard MAX98357A amplifier, optional
@@ -133,7 +133,7 @@ class TangNanoFaust {
     return readParameters();
   }
 
-  /// True if the FPGA runs the NanoTangFaust gateware.
+  /// True if the FPGA runs the TangNanoFaust gateware.
   bool ping() {
     tb_(kOpPing);
     for (int i = 0; i < 5; i++) tp_(0);
@@ -501,4 +501,4 @@ class TangNanoFaust {
   }
 };
 
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

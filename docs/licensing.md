@@ -1,6 +1,6 @@
 # Licensing
 
-NanoTangFaust is licensed under Apache-2.0 (see `LICENSE`), with one exception:
+TangNanoFaust is licensed under Apache-2.0 (see `LICENSE`), with one exception:
 
 - `gateware/rtl/sdram/sdram.v`, the SDRAM controller by nand2mario (from
   Sipeed's TangNano-20K examples, via arduino-tangnano20k), is **GPLv3**.

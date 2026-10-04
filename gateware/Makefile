@@ -1,4 +1,4 @@
-# NanoTangFaust: Faust program -> Tang Nano 20K bitstream, built with Gowin EDA.
+# TangNanoFaust: Faust program -> Tang Nano 20K bitstream, built with Gowin EDA.
 #
 #   make generic                      bitstream that loads any program at runtime
 #   make generic-flash                ... and load it into the FPGA (SRAM, until power-off)
@@ -29,7 +29,7 @@ SOURCES  := $(wildcard rtl/*.v rtl/*.vh rtl/sdram/*.v) constraints/tangnano20k.c
 
 all: bitstream
 
-$(FAUST2TANG): $(wildcard ../tools/*.cpp ../src/NanoTangFaust/compiler/*.h)
+$(FAUST2TANG): $(wildcard ../tools/*.cpp ../src/TangNanoFaust/compiler/*.h)
 	$(MAKE) -C ../tools
 
 $(BUILD)/$(NAME).fs: $(DSP) $(SOURCES) $(FAUST2TANG)
@@ -42,7 +42,7 @@ bitstream: $(BUILD)/$(NAME).fs
 # the program's numbers, then Gowin's utilization summary
 report: $(BUILD)/$(NAME).fs
 	@cat $(BUILD)/report.txt
-	@sed -n '/^3. Resource Usage Summary/,/MULT18X18/p' $(BUILD)/impl/pnr/nanotangfaust.rpt.txt
+	@sed -n '/^3. Resource Usage Summary/,/MULT18X18/p' $(BUILD)/impl/pnr/tangnanofaust.rpt.txt
 
 flash: $(BUILD)/$(NAME).fs
 	openFPGALoader -b tangnano20k $<

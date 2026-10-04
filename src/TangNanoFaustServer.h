@@ -1,6 +1,6 @@
 #pragma once
 /**
- * Compiling Faust source code over the network for NanoTangFaust.
+ * Compiling Faust source code over the network for TangNanoFaust.
  *
  * The Faust compiler needs a computer. FaustServerCompiler sends Faust
  * source code to a compile server on your network (`faust2tang --serve
@@ -13,7 +13,7 @@
  *   returns the finished program (a few KB). Needs no C++ standard library.
  * - compileAndLoad(faust, source, faustCompiler): the server returns Faust's
  *   bytecode, and the MCU compiles it for the DSP core itself (include
- *   NanoTangFaustCompiler.h for FaustCompiler).
+ *   TangNanoFaustCompiler.h for FaustCompiler).
  *
  * @code
  * WiFiClient client;
@@ -27,9 +27,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "NanoTangFaust.h"
+#include "TangNanoFaust.h"
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 
 class FaustServerCompiler {
  public:
@@ -246,4 +246,4 @@ class FaustServerCompiler {
   }
 };
 
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

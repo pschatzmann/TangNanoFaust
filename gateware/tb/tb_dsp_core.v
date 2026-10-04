@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 // dsp_core running a compiled Faust program, compared sample by sample
-// (outputs AND cycle counts) against the simulator (src/NanoTangFaust/
+// (outputs AND cycle counts) against the simulator (src/TangNanoFaust/
 // compiler/Isa.h) by run_core_test.sh. Expects config.vh / prog.hex /
 // inputs.hex in the working directory (written by tests/dsp_test rtl).
 `include "config.vh"

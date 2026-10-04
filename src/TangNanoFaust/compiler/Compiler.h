@@ -1,9 +1,9 @@
 #pragma once
-// FBC -> NanoTangFaust DSP core compiler, header-only C++ so the same code
+// FBC -> TangNanoFaust DSP core compiler, header-only C++ so the same code
 // runs in the faust2tang command line tool (tools/) and on a
 // microcontroller: the MCU compiles Faust interpreter bytecode (`faust
 // -lang interp -double` output) and uploads the result to the FPGA with
-// TangNanoFaust::load() (see NanoTangFaustCompiler.h).
+// TangNanoFaust::load() (see TangNanoFaustCompiler.h).
 //
 // Memory: one 32-bit word address space; [0, fastWords) is block RAM, from
 // kSdramBase on the board's SDRAM. Scalars and small arrays go to block
@@ -27,7 +27,7 @@
 #include "IsaOpcodes.h"
 #include "MathLib.h"
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 namespace compiler {
 
 static const uint32_t kSdramBase = 0x00800000;
@@ -648,4 +648,4 @@ inline bool compileFbc(const char *fbcText, const CompileOptions &opt, ProgramIm
 }
 
 }  // namespace compiler
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

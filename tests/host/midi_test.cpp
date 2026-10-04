@@ -10,8 +10,8 @@
 #include <poll.h>
 #include <termios.h>
 #include <vector>
-#include "NanoTangFaust.h"
-using namespace nanotangfaust;
+#include "TangNanoFaust.h"
+using namespace tangnanofaust;
 
 class SerialPort : public Stream {
   int fd_ = -1;

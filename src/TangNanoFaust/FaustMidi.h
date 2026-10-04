@@ -6,7 +6,7 @@
 
 #include "TangNanoFaust.h"
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 
 /**
  * @brief Plays the Faust program on the FPGA from MIDI received through the
@@ -182,4 +182,4 @@ class FaustMidi {
   }
 };
 
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

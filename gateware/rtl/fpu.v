@@ -2,7 +2,7 @@
 //
 // Multi-cycle binary32 floating-point unit for dsp_core.v.
 //
-// Bit-exact with src/NanoTangFaust/compiler/Fp32.h (the specification, and
+// Bit-exact with src/TangNanoFaust/compiler/Fp32.h (the specification, and
 // the model the testbenches compare against):
 //   - round to nearest even at 24 bits, then flush results below the normal
 //     range to a signed zero (FTZ) and above it to infinity;

@@ -18,7 +18,7 @@
 
 #include "Compiler.h"
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 namespace fp32 {
 
 static const uint32_t QNAN = 0x7FC00000u, PINF = 0x7F800000u, SIGN = 0x80000000u;
@@ -231,4 +231,4 @@ inline int fpuLatency(uint8_t op, uint32_t a, uint32_t b) {
 }
 
 }  // namespace fp32
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

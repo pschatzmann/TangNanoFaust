@@ -1,8 +1,8 @@
 # faust2tang
 
-`faust2tang` compiles a Faust program for the NanoTangFaust DSP core. It is
+`faust2tang` compiles a Faust program for the TangNanoFaust DSP core. It is
 a small C++ program (`tools/faust2tang.cpp`) around the header-only
-compiler in `src/NanoTangFaust/compiler/`, which is the same code that
+compiler in `src/TangNanoFaust/compiler/`, which is the same code that
 `FaustCompiler` runs on a microcontroller.
 
 ```bash
@@ -75,7 +75,7 @@ options apply to every request.
 
 | Parameter | |
 |---|---|
-| `out=program` | default: the finished program as a binary block (`src/NanoTangFaust/ProgramBlob.h`), for `parseProgramBlob()` + `TangNanoFaust::load()` |
+| `out=program` | default: the finished program as a binary block (`src/TangNanoFaust/ProgramBlob.h`), for `parseProgramBlob()` + `TangNanoFaust::load()` |
 | `out=fbc` | Faust's bytecode, for `FaustCompiler` on the MCU |
 | `out=report` | the report `faust2tang` prints |
 | `sr`, `fast_words`, `sdram`, `clk_hz` | the target bitstream: sample rate, block RAM words, SDRAM (0/1), clock (defaults 48000, 16384, 1, 48000000) |
@@ -116,7 +116,7 @@ don't apply to the interpreter bytecode.
 
 Faust's own VHDL backend isn't usable for this. Even simple programs
 produce invalid VHDL, and sliders, delays and tables aren't supported.
-NanoTangFaust therefore starts from Faust's **interpreter bytecode** (FBC):
+TangNanoFaust therefore starts from Faust's **interpreter bytecode** (FBC):
 a well-defined stack machine program with an integer heap, a real heap,
 init, control and per-sample blocks, and a description of the UI.
 

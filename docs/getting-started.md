@@ -79,9 +79,9 @@ the program needs) and writes `build/synth/synth_program.h`. Copy that
 header into your sketch:
 
 ```cpp
-#include <NanoTangFaust.h>
+#include <TangNanoFaust.h>
 #include "synth_program.h"
-using namespace nanotangfaust;
+using namespace tangnanofaust;
 
 TangNanoFaust faust;
 

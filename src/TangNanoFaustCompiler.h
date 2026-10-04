@@ -1,6 +1,6 @@
 #pragma once
 /**
- * On-MCU Faust compilation for NanoTangFaust.
+ * On-MCU Faust compilation for TangNanoFaust.
  *
  * The Faust compiler itself only runs on a computer: `faust -lang interp
  * -double my.dsp -o my.fbc` turns a .dsp into interpreter bytecode (FBC,
@@ -21,10 +21,10 @@
 #include <string>
 #include <vector>
 
-#include "NanoTangFaust.h"
-#include "NanoTangFaust/compiler/Compiler.h"
+#include "TangNanoFaust.h"
+#include "TangNanoFaust/compiler/Compiler.h"
 
-namespace nanotangfaust {
+namespace tangnanofaust {
 
 class FaustCompiler {
  public:
@@ -112,4 +112,4 @@ class FaustCompiler {
   }
 };
 
-}  // namespace nanotangfaust
+}  // namespace tangnanofaust

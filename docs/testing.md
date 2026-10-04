@@ -3,7 +3,7 @@
 ## How it is tested
 
 Everything is checked against two references: a **bit-exact simulator** of
-the DSP core (`src/NanoTangFaust/compiler/Isa.h`, with the FPU
+the DSP core (`src/TangNanoFaust/compiler/Isa.h`, with the FPU
 specification in `Fp32.h`), and an independent **reference interpreter**
 that executes Faust's bytecode the way Faust's own interpreter does
 (`tests/FbcInterpreter.h`, float32 with the C math library).
