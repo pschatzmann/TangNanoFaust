@@ -1,5 +1,8 @@
 # NanoTangFaust
 
+[![Arduino Library](https://img.shields.io/badge/Arduino-Library-00979D?logo=arduino&logoColor=white)](docs/installation.md#1-install-the-arduino-library)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
 Run [Faust](https://faust.grame.fr) DSP programs on a
 [Sipeed Tang Nano 20K](https://wiki.sipeed.com/hardware/en/tang/tang-nano-20k/nano-20k.html)
 FPGA, and control them from an Arduino or your computer.
@@ -95,7 +98,3 @@ hardware: a microcontroller on SPI or the UART, and TDM with a codec. See
 - [Testing and status](docs/testing.md): what's verified, and how
 - [Licensing](docs/licensing.md)
 
-## License
-
-Apache-2.0, except the vendored SDRAM controller (GPLv3), which is only
-included in bitstreams that use SDRAM. See [docs/licensing.md](docs/licensing.md).
