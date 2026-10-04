@@ -72,7 +72,8 @@ void setup() {
 void loop() {}
 ```
 
-See [examples/](examples/): `basic`, `midi_serial`, `compile_on_mcu`
+See [examples/](examples/): `basic`, `midi_serial`, `midi_synth` (four
+instruments, each on its own MIDI channel), `compile_on_mcu`
 (Faust bytecode compiled on the microcontroller), `serial_control`
 (control over a UART instead of SPI) and `wifi_compile` (an ESP32 sends Faust
 source to a compile server, `faust2tang --serve`, and plays the result).

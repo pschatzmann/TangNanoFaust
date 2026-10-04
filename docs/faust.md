@@ -141,8 +141,10 @@ cutoff = hslider("cutoff [midi:ctrl 74]", 2000, 100, 8000, 1);
 ```
 
 For [MIDI](arduino.md#midi), name the pitch, velocity and key parameters
-`freq`, `gain` and `gate`, Faust's convention for synths, and tag continuous
-controls with `[midi:ctrl N]`.
+`freq`, `gain` and `gate`, Faust's convention for synths, tag continuous
+controls with `[midi:ctrl N]` and parameters played by one key (drums) with
+`[midi:key N]`. For several instruments in one program, put each in its own
+group, as `examples/midi_synth/multisynth.dsp` does.
 
 ## Examples
 
@@ -151,6 +153,10 @@ controls with `[midi:ctrl N]`.
 (Karplus-Strong string), `passthrough.dsp`. `tests/dsp/` has the test
 programs: freeverb, all math functions, the on-board self-tests, and load
 tests such as `sines10.dsp` and `voices10.dsp`.
+`examples/midi_synth/multisynth.dsp` is a multi-timbral synth (bass, lead,
+plucked string, drums) that fits at 32 kHz; it shows cheap replacements for
+filters and envelopes whose coefficients would otherwise be recomputed after
+every parameter change.
 
 Physical models such as `pm.ks` need an *excitation*: start each note
 with a short burst (noise or an impulse), as `pluck.dsp` does. Feeding a

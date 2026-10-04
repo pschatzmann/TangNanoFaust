@@ -133,12 +133,43 @@ void loop() { midi.update(); }
 | note on/off | `freq` (Hz), `gain` (velocity / 127), `gate` (1 while a key is held) |
 | control change N | every parameter with `[midi:ctrl N]`, scaled to its range |
 | pitch bend | a parameter with `[midi:pitchwheel]`, otherwise bends `freq` (±2 semitones, `setBendRange()`) |
-| CC 123 (all notes off) | `gate` = 0 |
+| note on/off of key N | every parameter with `[midi:key N]` (e.g. drums): velocity scaled to its range, its minimum on note off |
+| CC 123 (all notes off) | `gate` = 0, `[midi:key N]` parameters to their minimum |
 
 It is monophonic with last-note priority. Playing a new note while another
 is held changes the pitch without re-triggering the envelope (legato).
 `noteOn()`, `noteOff()`, `controlChange()` and `pitchBend()` are public, so
 events from another MIDI library (USB MIDI, BLE MIDI) can be passed in too.
+
+### Several instruments
+
+A Faust program can contain several instruments, each in its own group
+(`vgroup("bass", ...)`), with its own `freq`/`gain`/`gate` and controllers.
+Give each instrument its own `FaustMidi` with a channel and a group: it then
+only uses the parameters in that group (`/bass/...`), so CC 7 on channel 1
+changes only the bass's `[midi:ctrl 7]`. A stream can only be read once, so
+`begin(channel, group)` takes no stream and the sketch passes each byte to
+all of them:
+
+```cpp
+FaustMidi bass(faust), drums(faust);
+
+void setup() {
+  ...
+  bass.begin(1, "bass");       // channel 1 -> /bass/...
+  drums.begin(10, "drums");    // channel 10 -> /drums/... ([midi:key N])
+}
+void loop() {
+  while (Serial1.available() > 0) {
+    uint8_t b = Serial1.read();
+    bass.parse(b);
+    drums.parse(b);
+  }
+}
+```
+
+`begin(stream, channel, group)` also takes a group, for a single
+instrument that reads its stream with `update()`.
 
 Each parameter change is one short SPI transaction, which takes about 30 µs
 at 2 MHz.
@@ -147,6 +178,8 @@ at 2 MHz.
 
 - `basic`: list the parameters, sweep `freq`, print the DSP load
 - `midi_serial`: MIDI over `Serial` (serial-MIDI bridge) or `Serial1` (DIN)
+- `midi_synth`: a multi-timbral synth (`multisynth.dsp`): bass, lead, plucked
+  string and drums on MIDI channels 1, 2, 3 and 10, loaded at startup
 - `compile_on_mcu`: compile `synth.dsp`'s bytecode on the MCU and play it
 - `serial_control`: control the FPGA over a UART (`begin(Serial1)`) instead of SPI
 - `wifi_compile`: an ESP32 sends Faust source to `faust2tang --serve` and

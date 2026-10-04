@@ -1,5 +1,6 @@
 #pragma once
 #include <Arduino.h>
+#include <ctype.h>
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
@@ -23,6 +24,26 @@ namespace tangnanofaust {
  *   scaled from 0..127 to the parameter's range.
  * - pitch bend -> a parameter with `[midi:pitchwheel]` metadata if there is
  *   one, otherwise it bends `freq` by up to +-2 semitones (setBendRange()).
+ * - note on/off of key N -> every parameter with `[midi:key N]` metadata
+ *   (e.g. drums): the velocity scaled to its range, back to its minimum on
+ *   note off.
+ *
+ * Several instruments in one Faust program: put each in its own group
+ * (`vgroup("bass", ...)`) and give each FaustMidi a channel and a group.
+ * It then only uses the parameters in that group, so every instrument can
+ * have its own `freq`/`gain`/`gate` and `[midi:ctrl 7]`. One stream can
+ * only be read once, so feed its bytes to all of them with parse():
+ *
+ * @code
+ * FaustMidi bass(faust), drums(faust);
+ * bass.begin(1, "bass");     // channel 1 plays /bass/...
+ * drums.begin(10, "drums");  // channel 10 plays /drums/...
+ * while (Serial1.available() > 0) {
+ *   uint8_t b = Serial1.read();
+ *   bass.parse(b);
+ *   drums.parse(b);
+ * }
+ * @endcode
  *
  * @code
  * TangNanoFaust faust;
@@ -43,17 +64,32 @@ class FaustMidi {
   explicit FaustMidi(TangNanoFaust &faust) : faust_(faust) {}
 
   /// `in` must outlive this object. `channel` 1..16, or 0 for all channels.
-  /// Call after TangNanoFaust::begin() (it needs the parameter list).
-  void begin(Stream &in, uint8_t channel = 0) {
+  /// `group` (e.g. "bass"): use only the parameters in this Faust group,
+  /// nullptr for all. Call after TangNanoFaust::begin() (it needs the
+  /// parameter list).
+  void begin(Stream &in, uint8_t channel = 0, const char *group = nullptr) {
+    begin(channel, group);
     in_ = &in;
+  }
+
+  /// Like begin(Stream &, ...) without a stream: the sketch passes the MIDI
+  /// bytes to parse() itself, e.g. to several FaustMidi on one input.
+  void begin(uint8_t channel, const char *group = nullptr) {
+    in_ = nullptr;
     channel_ = channel;
-    freq_ = faust_.findParameter("freq");
-    gain_ = faust_.findParameter("gain");
-    gate_ = faust_.findParameter("gate");
+    group_[0] = 0;
+    if (group && *group) {
+      if (*group != '/') strcpy(group_, "/");
+      strncat(group_, group, sizeof(group_) - 3);
+      strcat(group_, "/");
+    }
+    freq_ = find("freq");
+    gain_ = find("gain");
+    gate_ = find("gate");
     wheel_ = -1;
     char buf[16];
     for (int i = 0; i < faust_.parameterCount(); i++)
-      if (faust_.parameter(i).metaValue("midi", buf, sizeof(buf)) &&
+      if (inGroup(i) && faust_.parameter(i).metaValue("midi", buf, sizeof(buf)) &&
           strcmp(buf, "pitchwheel") == 0)
         wheel_ = i;
     held_ = 0;
@@ -100,6 +136,7 @@ class FaustMidi {
   }
 
   void noteOn(uint8_t note, uint8_t velocity) {
+    setKey(note, velocity);
     removeNote(note);
     if (held_ == kMaxHeld) removeAt(0);
     notes_[held_++] = note;
@@ -109,6 +146,7 @@ class FaustMidi {
   }
 
   void noteOff(uint8_t note) {
+    setKey(note, 0);
     bool wasCurrent = held_ > 0 && notes_[held_ - 1] == note;
     removeNote(note);
     if (held_ == 0) {
@@ -122,12 +160,13 @@ class FaustMidi {
     if (controller == 123) {  // all notes off
       held_ = 0;
       if (gate_ >= 0) faust_.setParameter(gate_, 0.0f);
+      setKey(-1, 0);
       return;
     }
     char buf[16];
     for (int i = 0; i < faust_.parameterCount(); i++) {
       const Parameter &p = faust_.parameter(i);
-      if (p.metaValue("midi", buf, sizeof(buf)) && strncmp(buf, "ctrl", 4) == 0 &&
+      if (inGroup(i) && p.metaValue("midi", buf, sizeof(buf)) && strncmp(buf, "ctrl", 4) == 0 &&
           atoi(buf + 4) == controller)
         faust_.setParameter(i, p.min + (p.max - p.min) * value / 127.0f);
     }
@@ -155,12 +194,36 @@ class FaustMidi {
   TangNanoFaust &faust_;
   Stream *in_ = nullptr;
   uint8_t channel_ = 0;
+  char group_[32] = "";  ///< "/bass/", or empty for all parameters
   uint8_t status_ = 0, count_ = 0, data_[2];
   int freq_ = -1, gain_ = -1, gate_ = -1, wheel_ = -1;
   uint8_t notes_[kMaxHeld];
   int held_ = 0;
   int bend_ = 0;
   float bendRange_ = 2.0f;
+
+  bool inGroup(int i) const {
+    return !group_[0] || strncmp(faust_.parameter(i).path, group_, strlen(group_)) == 0;
+  }
+
+  /// Index of the parameter with this label in the group, or -1.
+  int find(const char *label) const {
+    for (int i = 0; i < faust_.parameterCount(); i++)
+      if (inGroup(i) && strcmp(faust_.parameter(i).label(), label) == 0) return i;
+    return -1;
+  }
+
+  /// Sets the `[midi:key N]` parameters of `note` (-1: all of them) to the
+  /// velocity, scaled to their range (0: their minimum).
+  void setKey(int note, uint8_t velocity) {
+    char buf[16];
+    for (int i = 0; i < faust_.parameterCount(); i++) {
+      const Parameter &p = faust_.parameter(i);
+      if (inGroup(i) && p.metaValue("midi", buf, sizeof(buf)) && strncmp(buf, "key", 3) == 0 &&
+          (buf[3] == ' ' || isdigit((unsigned char)buf[3])) && (note < 0 || atoi(buf + 3) == note))
+        faust_.setParameter(i, p.min + (p.max - p.min) * velocity / 127.0f);
+    }
+  }
 
   void updateFreq() {
     if (freq_ < 0 || held_ == 0) return;
