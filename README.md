@@ -7,6 +7,9 @@ Run [Faust](https://faust.grame.fr) DSP programs on a
 [Sipeed Tang Nano 20K](https://wiki.sipeed.com/hardware/en/tang/tang-nano-20k/nano-20k.html)
 FPGA, and control them from an Arduino or your computer.
 
+<img src="https://wiki.sipeed.com/hardware/zh/tang/tang-nano-20k/assets/nano_20k/tang_nano_20k_3920_top.png" alt="Sipeed Tang Nano 20K" width="300">
+
+
 The FPGA runs a floating-point DSP core that executes compiled Faust
 programs and plays the audio on the board's I2S amplifier. Programs are
 loaded and their parameters changed at runtime: from a microcontroller
